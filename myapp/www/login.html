@@ -1,0 +1,137 @@
+<!--###############################################################START OF CODE###############################################################################-->
+<!DOCTYPE html>
+<head>
+	<title>Login Draft</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href = "css/bootstrap.min.css" rel = "stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+  
+	<script language="javascript">
+	<!-- This Script allows people to enter by using a form that asks for aUserID and Password -->
+	function validate(loginForm) {
+	//Authentication process: user input -> posted -> compared to database -> Success (go index.html) OR Fail (return error incorrect user-name/password)
+	//Has dummy user and pass until JSON added
+	//var data = '{"Username": "Admin","Password": Admin2}'; //Until we get real JSON object
+	//var json = JSON.parse(text);
+		
+	//if the length of the string value is 0,
+	//it means the user has entered no value:
+	
+	if (loginForm.login.value != "") 
+		{ 
+			if (loginForm.password.value != "") 
+			{    
+				location = 'index.html'; 
+			} 
+			else 
+			{
+				alert("Invalid Password");
+			}
+		} 
+		else 
+		{  
+			alert("Invalid UserID");
+		}
+		return false;
+	}
+	/*
+	<!-- This Script allows program to read JSON information and display it -->
+	//Lets set up a request
+	var xmlhttp = new XMLHttpRequest();
+	
+	//Were are we looking at?
+	var url = "Johns Server Address - We need to get this off John";
+
+	/* NOTES
+	onreadystatechange: Stores a function (or the name of a function) to be called
+						automatically each time the readyState property changes
+						
+	readyState: Holds the status of the XMLHttpRequest. Changes from 0 to 4: 
+				0: request not initialized 
+				1: server connection established
+				2: request received 
+				3: processing request 
+				4: request finished and response is ready
+				
+	status  :	200: "OK"
+				404: Page not found
+	*
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			myFunction(xmlhttp.responseText);
+		}
+	}
+	
+	/*
+	To send a request to a server, we use the open() and send() methods of the XMLHttpRequest object
+	xmlhttp.open Notes:
+		1.method: the type of request: GET or POST
+		2.url: the location of the file on the server
+		3.async: true (asynchronous) or false (synchronous)
+		
+	send(string) Notes:
+		Sends the request off to the server.
+		string: Only used for POST requests
+	*
+	xmlhttp.open("POST", url, true); // Use POST because data is important
+	xmlhttp.send();
+	
+	//Example Function that displays information - Display stuff as an Array
+	//If we know what the output is it makes it easy to display
+	/*function myFunction(response) {
+		var arr = JSON.parse(response);
+		var i;
+		var out = "<table>";
+
+		for(i = 0; i < arr.length; i++) {
+			out += "<tr><td>" + 
+			arr[i].Name +
+			"</td><td>" +
+			arr[i].City +
+			"</td><td>" +
+			arr[i].Country +
+			"</td></tr>";
+		}
+		out += "</table>"
+		document.getElementById("id01").innerHTML = out;
+	}*/
+	
+	
+	//var data = '{"name": "shaun","age": 22,"address": {"streetAddress": "420 Fake Stree","city": "FakeTown"},"phoneNumber": [{"type": "home","number": "111 111-1111"}]}';
+	//var json = JSON.parse(data);
+	//alert(json["name"]); 
+	//alert(json.name); 
+	//alert(json.address.streetAddress); 
+	//alert(json["address"].city); 
+	//alert(json.phoneNumber[0].number); 
+	//alert(json.phoneNumber[1].type); 
+	//alert(json.phoneNumber.number); 
+	
+	</script>
+
+</head>
+<body>
+  <section class="container">
+    <div class="login">
+      <h1>Login to Inology App </h1>
+      <form action="customerLogin" method="post" onsubmit="return validate(this)"><!--action="Johns Server Address" action="index.html"-->
+        <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+        <p><input type="password" name="password" value="" placeholder="Password"></p>
+        <p class="remember_me">
+          <label>
+            <input type="checkbox" name="remember_me" id="remember_me">
+            Remember me
+          </label>
+        </p>
+        <p class="submit"><input type="submit" name="commit" value="Login"></p>
+      </form>
+    </div>
+
+    <div class="login-help">
+		<p>Go Home<a href="home.html"> Home</a>.</p>
+      <p>New user or reset password? <a href="http://www.inology.com.au/">Register/Reset</a>.</p>
+    </div>
+  </section>
+</body>
+</html>
+<!--###############################################################END OF CODE###############################################################################-->

@@ -1,0 +1,84 @@
+<!-- 
+  Create tabs with an icon and label, using the tabs-positive style. 
+  Each tab's child <ion-nav-view> directive will have its own 
+  navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-positive">
+
+  <!-- Login-->
+  <ion-tab title="Login" icon="icon ion-ios7-person">
+    <ion-view title="Login">
+		<ion-content>
+		  <section class="container">
+			<div class="login">
+			  <h1>Login to Inology App </h1>
+			  <form id="myForm" action="#" method="POST" onclick="submitForm()"><!--action="Johns Server Address" action="index.html"-->
+				<p>Username: <input type="text" id="txtName" value="" placeholder="Username or Email"></p>
+				<p>Password: <input type="password" id="txtPassword" value="" placeholder="Password"></p>
+				<p id="result"></p>
+				<p class="remember_me">
+				  <label>
+					<input type="checkbox" name="remember_me" id="remember_me">
+					Remember me
+				  </label>
+				</p>
+				<p><input id="submit" onclick="validateThis()" type="submit" value="Submit" /></p>
+			  </form>
+			</div>
+			
+			<div class="login-help">
+				<p>Go Home<a href="home.html"> Home</a>.</p>
+				<p>New user or reset password? <a href="http://www.inology.com.au/">Register/Reset</a>.</p>
+			</div>
+		  </section>
+		</ion-content>
+	</ion-view>
+  </ion-tab>
+
+  <!-- Home -->
+  <ion-tab title="Home" icon="icon ion-home" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+
+  <!-- Events -->
+  <ion-tab title="Events" icon="icon ion-calendar" href="#/tab/friends">
+	  <ion-view title="Events">
+		<ion-nav-view name="tab-friends"></ion-nav-view>
+	  </ion-view>
+  </ion-tab>
+
+
+  <!-- Loyalty -->
+  <ion-tab title="Loyalty" icon="icon ion-coffee">
+    <ion-view title="Loyalty">
+		<ion-content>
+		<div id="logger" onload="who_is_logged();"></div>
+		<h1>Spend points test</h1>
+		<form id="myForm" action="#" method="post">
+			<fieldset>
+				<p><label for="txtName">Enter Points too Spend:</label>
+				<input type="number" id="txtName" name="txtName" />
+				<p><input type="submit" value="Submit" /></p>
+			</fieldset>
+		</form>		
+		<p>
+			Points:
+		</p>
+		<p id="result"></p>
+		<p id="result1">100</p>
+		
+		<button onclick="correctSpend()">test1 - Spend 50 Points</button>
+		<button onclick="incorrectSpend()">test2 - Spend 500 Points</button>
+		<button onclick="invalid()">test3 - Spend an invalid amount "B"</button>
+		</ion-content>
+	</ion-view>
+  </ion-tab>
+  
+  <!-- Account -->
+  <ion-tab title="Account" icon="icon ion-gear-b" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>
