@@ -2,37 +2,95 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>Todo</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ionic.css">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <script src="js/ionic.js"></script>
+    <script src="js/ionic-angular.js"></script>
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-	
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-	
-	<!-- AngularFire Extensions -->
+    <!-- AngularFire Extensions -->
     <script src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.5.0-rc1/angularfire.js"></script>
-	
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+    <!-- Needed for Cordova/PhoneGap -->
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script src="js/app.js"></script>
+
+  </head>
+  <body ng-app="todo" ng-controller="TodoCtrl">
+<side-menus>
+
+    <!-- Center content -->
+    <pane side-menu-content>
+        <header class="bar bar-header bar-dark">
+            <button class="button button-icon" ng-click="toggleProjects()">
+                <i class="icon ion-navicon"></i>
+            </button>
+            <h1 class="title"></h1>
+            <!-- New Task button-->
+            <button class="button button-clear" ng-click="newTask()">
+                New
+            </button>
+        </header>
+        <content has-header="true" scroll="false">
+            <list>
+                <item ng-repeat="task in projectsList[user.lastproject]">
+                    
+                </item>
+            </list>
+        </content>
+    </pane>
+
+    <!-- Left menu -->
+    <side-menu side="left">
+        <header class="bar bar-header bar-dark">
+            <h1 class="title">Projects</h1>
+            <button class="button button-icon" ng-click="newProject()">
+                <i class="ion ion-plus"></i>
+            </button>
+        </header>
+        <content has-header="true" scroll="false">
+            <list>
+            <item ng-repeat="(name, project) in projectsList" ng-click="selectProject(name)" ng-class="{active: user.    lastproject == project}">
+                    
+                </item>
+            </list>
+        </content>
+    </side-menu>
+
+
+    <script id="new-task.html" type="text/ng-template">
+
+        <div class="modal">
+
+            <!-- Modal header bar -->
+            <header class="bar bar-header bar-secondary">
+                <h1 class="title">New Task</h1>
+                <button class="button button-clear button-primary" ng-click="closeNewTask()">Cancel</button>
+            </header>
+
+            <!-- Modal content area -->
+            <content has-header="true">
+
+                <form ng-submit="createTask(task)">
+                    <div class="list">
+                        <label class="item item-input">
+                            <input type="text" placeholder="What do you need to do?" ng-model="task.title">
+                        </label>
+                    </div>
+                    <div class="padding">
+                        <button type="submit" class="button button-full button-primary">Create Task</button>
+                    </div>
+                </form>
+
+            </content>
+
+        </div>
+
+    </script>
+
+</side-menus>
+</body>
 </html>
